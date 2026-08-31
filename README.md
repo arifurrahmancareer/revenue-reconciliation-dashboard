@@ -4,7 +4,7 @@ Ingests a messy orders export and a messy payments export, reconciles them with 
 deterministic rules engine, prices the money at risk, and explains any finding in plain
 English on demand.
 
-**Live app:** `https://<your-app>.streamlit.app`
+**Live app:** `https://revenue-reconciliation-dashboard.streamlit.app/`
 **Demo account:** `demo@example.com` / `ReconDemo2025!`
 
 ---
