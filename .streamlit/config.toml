@@ -1,0 +1,27 @@
+# Streamlit configuration committed to the repository.
+# NOTE: this file is for non-secret settings only. Secrets go in secrets.toml, which is
+# gitignored, or into the Secrets box in the Streamlit Cloud dashboard.
+
+[theme]
+base = "light"
+primaryColor = "#1D4ED8"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#101828"
+
+[server]
+# The parser loads an upload into memory, and the app rejects anything over 10 MB before
+# parsing. Telling Streamlit the same limit means an oversized file is refused by the
+# browser upload widget instead of being transferred and then rejected.
+maxUploadSize = 10
+enableXsrfProtection = true
+enableCORS = true
+
+[browser]
+# No usage statistics leave the deployment.
+gatherUsageStats = false
+
+[client]
+# Tracebacks are for the server log, not for the user's screen. Every expected failure in
+# this app is already caught and rendered as a readable message.
+showErrorDetails = false

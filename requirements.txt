@@ -1,0 +1,30 @@
+# Streamlit Community Cloud installs this file automatically from the repository root.
+# It must be at the root and it must be named requirements.txt -- a nested or renamed file
+# is silently ignored and the deploy then fails on the first import.
+#
+# Versions are pinned with a compatible-release range: patch and minor updates are allowed
+# (security fixes arrive without a code change), major versions are not (they break APIs).
+
+# --- UI ---------------------------------------------------------------------------
+streamlit~=1.40
+plotly~=5.24
+reportlab~=4.2
+pandas~=2.2                 # Streamlit renders dataframes through pandas
+
+# --- data / persistence -------------------------------------------------------------
+SQLAlchemy~=2.0
+psycopg[binary]~=3.2        # PostgreSQL driver for production; the binary wheel needs no
+                            # system libpq, which is what makes it work on a managed host.
+                            # SQLite needs no driver -- it ships with Python.
+
+# --- security -----------------------------------------------------------------------
+bcrypt~=4.2                 # used directly; passlib has been unmaintained since 2020
+
+# --- AI -------------------------------------------------------------------------------
+openai~=1.54                # imported ONLY in app/services/llm.py, which runs server-side
+
+# NOT required, and deliberately absent:
+#   fastapi / uvicorn  -- there is no separate API service any more
+#   requests / httpx   -- nothing makes HTTP calls except the openai client
+#   PyJWT              -- identity lives in server-side session state, not in a token
+#   python-dotenv      -- Streamlit reads .streamlit/secrets.toml; os.environ still works
