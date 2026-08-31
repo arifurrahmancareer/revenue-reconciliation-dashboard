@@ -398,3 +398,16 @@ Stated deliberately — each is a conscious scope call, not an oversight.
 ## 11. Final Note on AI
 
 AI coding tools were used in this project primarily to generate unit test matrices from the deterministic logic specifications, author layout components for charts and PDF reports, and as a sounding board to confirm float rounding behaviors across Python engines vs JS environments (preventing the 1-cent rounding trap). At no point does the LLM run autonomous rules. The core logic remains 100% human-designed and deterministically tested!
+
+## 12. What I would improve or build next with more time
+
+Given additional time, I would prioritize the following enhancements:
+
+- **Role-based access & workflow:** Allow finance/ops users to flag discrepancies as investigated, add notes, and transition findings through states (New → Investigating → Resolved → False Positive). This turns the dashboard from a passive report into an active work queue.
+- **Export & audit trail:** Enable downloading the full discrepancy list with AI explanations as CSV/Excel, and provide a immutable PDF report of each run for archival/compliance purposes.
+- **Temporal & trend analysis:** Add time-series views (daily/weekly mismatch rates, money-at-risk over time) to help identify systemic issues like cutoff errors or seasonal spikes in certain discrepancy types.
+- **Streaming ingestion:** For very large files (>10 MB), implement chunked parsing to avoid loading the entire export into memory, perhaps using `pandas.read_csv(chunksize=…)` or a custom iterator.
+- **Fuzzy matching review queue:** While keeping the core engine exact-key (to avoid false positives), surface high-confidence fuzzy candidates (e.g., `ORD-1801` vs `ORD-1810`) in a separate “Review Suggested Matches” tab for human judgment.
+- **Multi-factor authentication:** Add TOTP or WebAuthn as a second factor for administrative users, while keeping the demo flow simple.
+- **CI/CD & automated testing:** Set up GitHub Actions to run the test suite on every PR, and deploy preview versions to Streamlit Cloud for visual regression checks.
+- **Customizable tolerances per client:** Allow account administrators to adjust the amount tolerance, duplicate window, and settlement lag via the UI (with guardrails to prevent extreme values), and store these preferences per user.
