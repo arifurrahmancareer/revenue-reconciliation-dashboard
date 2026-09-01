@@ -1,0 +1,14 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    - cron: '*/45 * * * *'  # Every 45 minutes
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the Streamlit app
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://revenue-reconciliation-dashboard.streamlit.app/
